@@ -274,6 +274,11 @@ final class PhabricatorExtraConfigSetupCheck extends PhabricatorSetupCheck {
 
       'security.allow-conduit-act-as-user' => pht(
         'Impersonating users over the API is no longer supported.'),
+
+      'differential.generated-paths' => pht(
+        'Generated paths should be specified in the '.
+        '`%s` file in the repository.',
+        '.arcconfig'),
     );
 
     return $ancient_config;

@@ -501,40 +501,17 @@ final class DifferentialChangesetParser extends Phobject {
   }
 
   private function markGenerated($new_corpus_block = '') {
-    $generated_guess = (strpos($new_corpus_block, '@'.'generated') !== false);
+    $generated = (strpos($new_corpus_block, '@'.'generated') !== false);
 
-    if (!$generated_guess) {
+    if (!$generated) {
       foreach ($this->generatedPaths as $regex) {
         if (preg_match($regex, $this->changeset->getFilename())) {
-          $generated_guess = true;
+          $generated = true;
           break;
         }
       }
     }
 
-    // The following is deprecated and should not be used.
-    if (!$generated_guess) {
-      $key = 'differential.generated-paths';
-      $generated_path_regexps = PhabricatorEnv::getEnvConfig($key);
-
-      foreach ($generated_path_regexps as $regexp) {
-        if (preg_match($regexp, $this->changeset->getFilename())) {
-          $generated_guess = true;
-          break;
-        }
-      }
-    }
-
-    $event = new PhabricatorEvent(
-      PhabricatorEventType::TYPE_DIFFERENTIAL_WILLMARKGENERATED,
-      array(
-        'corpus' => $new_corpus_block,
-        'is_generated' => $generated_guess,
-      )
-    );
-    PhutilEventEngine::dispatchEvent($event);
-
-    $generated = $event->getValue('is_generated');
     $this->specialAttributes[self::ATTR_GENERATED] = $generated;
   }
 
