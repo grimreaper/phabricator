@@ -159,6 +159,14 @@ final class DiffusionDiffQueryConduitAPIMethod
 
     $change = $changes[$path->getPath()];
 
+    foreach ($this->getSVNProperties($old) as $prop_name => $prop_value) {
+      $change->setOldProperty($prop_name, $prop_value);
+    }
+
+    foreach ($this->getSVNProperties($new) as $prop_name => $prop_value) {
+      $change->setNewProperty($prop_name, $prop_value);
+    }
+
     return array($change);
   }
 
@@ -193,6 +201,28 @@ final class DiffusionDiffQueryConduitAPIMethod
     return $repository->getRemoteCommandFuture(
       'cat %s',
       $repository->getSubversionPathURI($ref, $rev));
+  }
+
+  private function getSVNProperties($spec) {
+    if (!$spec) {
+      return null;
+    }
+
+    $drequest = $this->getDiffusionRequest();
+    $repository = $drequest->getRepository();
+
+    list($ref, $rev) = $spec;
+    list($stdout) = $repository->execxRemoteCommand(
+      'proplist -v %s --xml',
+      $repository->getSubversionPathURI($ref, $rev));
+
+    $properties = array();
+    $proplist = new SimpleXMLElement($stdout);
+    foreach ($proplist->target->property as $property) {
+      $properties[(string)$property['name']] = (string)$property;
+    }
+
+    return $properties;
   }
 
   private function getGitOrMercurialResult(ConduitAPIRequest $request) {
