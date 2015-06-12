@@ -89,7 +89,6 @@ final class PhabricatorMainMenuSearchView extends AphrontView {
       $user,
       array(
         'action' => '/search/',
-        'method' => 'POST',
       ),
       phutil_tag_div('phabricator-main-menu-search-container', array(
         $input,
