@@ -938,6 +938,10 @@ final class PhabricatorMetaMTAMail extends PhabricatorMetaMTADAO {
         $send = false;
         foreach ($tags as $tag) {
           if (((int)idx($user_mailtags, $tag, $value_email)) == $value_email) {
+            if ($tag == PhabricatorAuditTransaction::MAILTAG_COMMIT) {
+              // XXX: FreeBSD hack: remove audit-commit mails since we have alternative ways to send these
+              continue;
+            }
             $send = true;
             break;
           }
