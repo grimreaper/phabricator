@@ -18,7 +18,7 @@ final class PhabricatorEmailLoginController
     $e_captcha = true;
     $errors = array();
 
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
 
     if ($request->isFormPost()) {
       $e_email = null;

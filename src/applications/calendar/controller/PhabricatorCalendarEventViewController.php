@@ -73,7 +73,7 @@ final class PhabricatorCalendarEventViewController
       ->setHeader($header)
       ->addPropertyList($properties);
 
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
     $add_comment_header = $is_serious
       ? pht('Add Comment')
       : pht('Add To Plate');

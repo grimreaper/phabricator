@@ -30,8 +30,7 @@ final class PhabricatorNotificationClearController
       $dialog->setTitle(pht('Really mark all notifications as read?'));
       $dialog->addHiddenInput('chronoKey', $chrono_key);
 
-      $is_serious =
-        PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+      $is_serious = false;
       if ($is_serious) {
         $dialog->appendChild(
           pht(

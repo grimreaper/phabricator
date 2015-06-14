@@ -145,7 +145,7 @@ final class PhabricatorSlowvotePollController
   private function buildCommentForm(PhabricatorSlowvotePoll $poll) {
     $viewer = $this->getRequest()->getUser();
 
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
 
     $add_comment_header = $is_serious
       ? pht('Add Comment')

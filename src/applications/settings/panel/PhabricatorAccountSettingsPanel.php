@@ -54,7 +54,7 @@ final class PhabricatorAccountSettingsPanel extends PhabricatorSettingsPanel {
     );
 
     $locales = PhutilLocale::loadAllLocales();
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
     $is_dev = PhabricatorEnv::getEnvConfig('phabricator.developer-mode');
 
     $translations = array();

@@ -65,7 +65,7 @@ final class PhabricatorMacroViewController
       $header->setStatus('fa-ban', 'red', pht('Archived'));
     }
 
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
 
     $comment_header = $is_serious
       ? pht('Add Comment')

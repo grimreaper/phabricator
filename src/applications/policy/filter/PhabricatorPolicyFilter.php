@@ -762,7 +762,7 @@ final class PhabricatorPolicyFilter extends Phobject {
 
     $object_name = $handle->getObjectName();
 
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
     if ($is_serious) {
       $access_denied = pht(
         'Access Denied: %s',

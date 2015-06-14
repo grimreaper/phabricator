@@ -46,7 +46,7 @@ final class PhabricatorOAuthClientSecretController
     }
 
 
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
 
     if ($is_serious) {
       $body = pht(

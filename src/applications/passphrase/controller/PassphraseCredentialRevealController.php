@@ -87,7 +87,7 @@ final class PassphraseCredentialRevealController
       return id(new AphrontDialogResponse())->setDialog($dialog);
     }
 
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
 
     if ($is_serious) {
       $body = pht(

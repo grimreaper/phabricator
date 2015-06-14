@@ -602,7 +602,7 @@ final class PhabricatorUser
     $admin_username = $admin->getUserName();
     $admin_realname = $admin->getRealName();
     $user_username = $this->getUserName();
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
 
     $base_uri = PhabricatorEnv::getProductionURI('/');
 

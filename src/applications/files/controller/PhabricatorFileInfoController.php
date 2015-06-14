@@ -93,7 +93,7 @@ final class PhabricatorFileInfoController extends PhabricatorFileController {
       $file,
       new PhabricatorFileTransactionQuery());
 
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
 
     $add_comment_header = $is_serious
       ? pht('Add Comment')

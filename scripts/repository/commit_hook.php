@@ -134,7 +134,7 @@ try {
 } catch (DiffusionCommitHookRejectException $ex) {
   $console = PhutilConsole::getConsole();
 
-  if (PhabricatorEnv::getEnvConfig('phabricator.serious-business')) {
+  if (false) {
     $preamble = pht('*** PUSH REJECTED BY COMMIT HOOK ***');
   } else {
     $preamble = pht(<<<EOTXT

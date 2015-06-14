@@ -172,7 +172,7 @@ final class PhabricatorUserEmail extends PhabricatorUserDAO {
     $link = PhabricatorEnv::getProductionURI($this->getVerificationURI());
 
 
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
 
     $signature = null;
     if (!$is_serious) {

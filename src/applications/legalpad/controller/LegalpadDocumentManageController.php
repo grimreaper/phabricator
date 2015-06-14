@@ -184,7 +184,7 @@ final class LegalpadDocumentManageController extends LegalpadController {
 
     $draft = PhabricatorDraft::newFromUserAndKey($user, $document->getPHID());
 
-    $is_serious = PhabricatorEnv::getEnvConfig('phabricator.serious-business');
+    $is_serious = false;
 
     $title = $is_serious
       ? pht('Add Comment')
